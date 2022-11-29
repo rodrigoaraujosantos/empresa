@@ -1,6 +1,7 @@
 package org.soulcodeacademy.empresa.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Projeto {
@@ -56,5 +57,18 @@ public class Projeto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Projeto projeto = (Projeto) o;
+        return idProjeto.equals(projeto.idProjeto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProjeto);
     }
 }

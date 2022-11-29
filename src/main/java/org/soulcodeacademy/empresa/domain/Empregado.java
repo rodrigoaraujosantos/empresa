@@ -1,6 +1,8 @@
 package org.soulcodeacademy.empresa.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Empregado {
@@ -20,6 +22,10 @@ public class Empregado {
     @OneToOne// 1:1 (Empregado - Endereco)
     @JoinColumn(name = "id_endereco", nullable = false)//renomeia a coluna da PK
     private Endereco endereco;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Projeto> projetos = new ArrayList<>();
 
     public Empregado() {}
 
@@ -68,5 +74,13 @@ public class Empregado {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
     }
 }
